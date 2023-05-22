@@ -9,6 +9,9 @@ const {
   getTokenByUserId,
   deleteUserToken,
   addUserToken,
+  getTokenByAdminId,
+  deleteAdminToken,
+  addAdminToken,
 } = require("../models/token");
 const verifyRefreshToken = require("../auth/verifyRefreshToken");
 
@@ -73,13 +76,24 @@ module.exports = {
         expiresIn: REFRESHTOKEN_LIFE,
       });
 
-      const getUserToken = await getTokenByUserId(userData?._id);
+      if (isMatchUser) {
+        const getUserToken = await getTokenByUserId(userData?._id);
 
-      if (getUserToken?._id) {
-        await deleteUserToken(userData?._id);
+        if (getUserToken?._id) {
+          await deleteUserToken(userData?._id);
+        }
+
+        await addUserToken(userData?._id, refreshToken);
+
+      } else {
+        const getAdminToken = await getTokenByAdminId(userData?._id);
+
+        if (getAdminToken?._id) {
+          await deleteAdminToken(userData?._id);
+        }
+
+        await addAdminToken(userData?._id, refreshToken);
       }
-
-      await addUserToken(userData?._id, refreshToken);
 
       return res.send({
         success: true,
@@ -99,8 +113,8 @@ module.exports = {
 
     const verifyToken = await verifyRefreshToken(refreshToken);
     if (verifyToken?._id) {
-      delete verifyToken.iat
-      delete verifyToken.exp
+      delete verifyToken.iat;
+      delete verifyToken.exp;
       const accessToken = jwt.sign(verifyToken, SECRET_TOKEN, {
         expiresIn: TOKEN_LIFE,
       });
@@ -108,6 +122,6 @@ module.exports = {
       return res.send({ success: true, payload: accessToken });
     }
 
-    res.status(400).json("refreshToken sai");
+    res.status(400).json("Wrong RefreshToken");
   }),
 };

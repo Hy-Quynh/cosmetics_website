@@ -1,9 +1,11 @@
 import React from "react";
 import { parseJSON } from "../../utils/helpers";
 import { USER_INFO_KEY } from "../../utils/contants";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const userInfo = parseJSON(localStorage.getItem(USER_INFO_KEY));
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -90,7 +92,7 @@ export default function Header() {
                   </a>
                 </div>
               </div>
-              <a href="/post" className="nav-item nav-link">
+              <a href="/blog" className="nav-item nav-link">
                 Bài viết
               </a>
               <a href="/contact" className="nav-item nav-link">
@@ -105,9 +107,33 @@ export default function Header() {
                 <small className="fa fa-search text-body" />
               </a>
               {userInfo?.type === "user" && userInfo?._id ? (
-                <a className="btn-sm-square bg-white rounded-circle ms-3" href>
-                  <small className="fa fa-user text-body" />
-                </a>
+                <div className="nav-item dropdown">
+                  <a className="btn-sm-square bg-white rounded-circle ms-3">
+                    <small className="fa fa-user text-body" />
+                  </a>
+                  <div
+                    className="dropdown-menu"
+                    style={{ marginLeft: "-40px" }}
+                  >
+                    <a
+                      className="dropdown-item"
+                      style={{ cursor: "pointer" }}
+                      href="/personal"
+                    >
+                      Trang cá nhân
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        localStorage.clear();
+                        navigate("/login");
+                      }}
+                    >
+                      Đăng xuất
+                    </a>
+                  </div>
+                </div>
               ) : (
                 <a
                   className="btn-sm-square bg-white rounded-circle ms-3"

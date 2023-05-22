@@ -20,7 +20,8 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "stripe": "^12.6.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.22"

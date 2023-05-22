@@ -8,11 +8,28 @@ import Dashboard from "../pages/Admin/Dashboard";
 import AdminPrivateRouter from "./PrivateRouter/AdminPrivateRouter";
 import ProductCategory from "../pages/Admin/Category";
 import AdminAccount from "../pages/Admin/Account";
+import AdminBlog from "../pages/Admin/Blog";
+import BlogDetailPage from "../pages/Client/BlogDetail";
+import BlogPage from "../pages/Client/Blog";
+import AdminProduct from "../pages/Admin/Product";
+import ProductDetail from "../pages/Client/ProductDetail";
 
 const ClientLayoutPage = [
   {
     path: "/",
     page: <HomePage />,
+  },
+  {
+    path: "/blog/:blogId",
+    page: <BlogDetailPage />,
+  },
+  {
+    path: "/blog",
+    page: <BlogPage />,
+  },
+  {
+    path: "/product/:productId",
+    page: <ProductDetail />,
   },
 ];
 
@@ -24,6 +41,14 @@ const AdminLayoutPage = [
   {
     path: "/admin/category",
     page: <ProductCategory />,
+  },
+  {
+    path: "/admin/product",
+    page: <AdminProduct />,
+  },
+  {
+    path: "/admin/blog",
+    page: <AdminBlog />,
   },
   {
     path: "/admin/account",

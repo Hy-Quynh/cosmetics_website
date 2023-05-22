@@ -43,8 +43,7 @@ axiosConfig.interceptors.response.use(
         localStorage.setItem(ACCESS_TOKEN_KEY, res?.payload);
         return axiosConfig(config);
       } catch (error) {
-        const errorCode = error?.status;
-        if (errorCode === 400) {
+        if (error === "Wrong RefreshToken") {
           localStorage.clear();
           window.alert("Phiên làm việc hết hạn. Vui lòng đăng nhập lại!");
           window.location = "/login";

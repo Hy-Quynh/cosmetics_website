@@ -27,7 +27,7 @@ import CustomDialog from "../../../components/CustomDialog";
 import { categoryAPI } from "../../../services/categoryAPI";
 
 const columns = [
-  { id: "_id", label: "Mã", minWidth: 150, align: "center" },
+  { id: "stt", label: "Số thứ tự", minWidth: 150, align: "center" },
   {
     id: "category_image",
     label: "Hình ảnh",
@@ -348,7 +348,7 @@ export default function ProductCategory() {
             <TableBody>
               {listCategory
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, rowIndex) => {
                   return (
                     <TableRow
                       hover
@@ -423,7 +423,7 @@ export default function ProductCategory() {
                                   <BorderColorIcon />
                                 </Button>
                               </Stack>
-                            ) : column.id === "_id" ? (
+                            ) : column.id === "stt" ? (
                               <div
                                 style={{
                                   textAlign: "center",
@@ -431,7 +431,7 @@ export default function ProductCategory() {
                                   fontWeight: "bold",
                                 }}
                               >
-                                {value}
+                                {rowIndex + 1}
                               </div>
                             ) : column.id === "category_image" ? (
                               <img

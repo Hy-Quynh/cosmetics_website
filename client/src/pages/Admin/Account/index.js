@@ -328,7 +328,14 @@ export default function AdminAccount() {
                               ) : column.id === "status" ? (
                                 displayStatus(row?.status, row?._id)
                               ) : column.id === "stt" ? (
-                                index + 1
+                                <div
+                                  style={{
+                                    color: "red",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {index + 1}
+                                </div>
                               ) : (
                                 value
                               )}

@@ -11,6 +11,8 @@ const verifyToken = require("./auth/checkToken");
 const authRouter = require("./routers/auth");
 const categoryRouter = require("./routers/category");
 const userRouter = require("./routers/user");
+const blogRouter = require("./routers/blog");
+const productRouter = require("./routers/product");
 
 app.use(
   cookieSession({
@@ -43,8 +45,11 @@ app.use(routerPublic);
 
 routerPrivate.use(verifyToken);
 routerPrivate.use("/api/category", categoryRouter);
+routerPrivate.use("/api/blog", blogRouter);
 routerPrivate.use("/api/user", userRouter);
+routerPrivate.use("/api/product", productRouter);
 app.use(routerPrivate);
+
 // app.use("/api/auth", authRouter);
 // app.use("/api/user", userRouter);
 // app.use("/api/category", categoryRouter);

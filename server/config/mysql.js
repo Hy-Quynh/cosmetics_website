@@ -15,6 +15,7 @@ const mysqlConfig = {
 };
 
 const pool = mysql.createPool({ ...mysqlConfig, charset: "utf8" });
+
 /**
  *
  * @param {String} queryStr

@@ -46,8 +46,6 @@ export default function UserLogin() {
 
     if (loginRes?.success) {
       const payload = loginRes?.payload;
-
-      console.log("payload >>>> ", payload);
       //lưu access token, refresh token
 
       // localStorage.setItem(USER_INFO_KEY, JSON.stringify(payload));
