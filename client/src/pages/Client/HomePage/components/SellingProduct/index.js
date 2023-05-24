@@ -44,7 +44,7 @@ export default function SellingProduct() {
                     <ProductItem
                       id={item?._id}
                       image={item?.product_image}
-                      isNew={true}
+                      isNew={false}
                       name={item?.product_name}
                       price={item?.product_price}
                       salePrice={item?.sale_price}
