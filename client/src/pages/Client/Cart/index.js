@@ -276,7 +276,7 @@ export default function CartPage() {
                         (item) => item?.product_id !== cartItem?.product_id
                       );
                       localStorage.setItem(
-                        USER_CART_INFO + `_${userData?.user_id || ""}`,
+                        USER_CART_INFO + `_${userData?._id || ""}`,
                         JSON.stringify(currCart)
                       );
                       window.dispatchEvent(new Event("storage"));
