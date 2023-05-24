@@ -27,4 +27,21 @@ export const userAPI = {
     const response = await axiosConfig.post(`${URL}`, data);
     return response;
   },
+
+  updateUserInfo: ({
+    id,
+    email,
+    first_name,
+    last_name,
+    address,
+    phone_number,
+  }) => {
+    return axiosConfig.put(`${URL}/${id}`, {
+      email,
+      first_name,
+      last_name,
+      address,
+      phone_number,
+    });
+  },
 };

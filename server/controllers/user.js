@@ -11,6 +11,7 @@ const {
   createNewUser,
   getUserByEmail,
   getAdminByEmail,
+  updateUserInfo,
 } = require("../models/user");
 
 module.exports = {
@@ -96,5 +97,12 @@ module.exports = {
       return res.send({ success: false, error: "Đăng kí tài khoản thất bại" });
     }
     return res.send({ success: true });
+  }),
+
+  updateUserInfo: asyncHandler(async (req, res) => {
+    const {userId} = req?.params
+    const {email, first_name, last_name, address, phone_number} = req?.body
+    const updateRes = await updateUserInfo(userId, email, first_name, last_name, address, phone_number)
+    res.send({ success: updateRes });
   }),
 };

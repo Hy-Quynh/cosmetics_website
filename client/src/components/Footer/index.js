@@ -10,13 +10,14 @@ export default function Footer() {
       >
         <div className="container py-5">
           <div className="row g-5">
-            <div className="col-lg-3 col-md-6">
+            <div className="col-lg-4 col-md-6">
               <h1 className="fw-bold text-primary mb-4">
                 Cos<span className="text-secondary">me</span>tic
               </h1>
               <p>
-                Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita
-                erat ipsum et lorem et sit, sed stet lorem sit clita
+                Cosmetic - thương hiệu đi đầu trong ngành phân phối mỹ phẩm
+                chính hãng, phục vụ cho nhu cầu mua sắm & làm đẹp của hàng triệu
+                khách hàng tại Việt Nam.
               </p>
               <div className="d-flex pt-2">
                 <a
@@ -45,11 +46,11 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="col-lg-3 col-md-6">
-              <h4 className="text-light mb-4">Address</h4>
+            <div className="col-lg-4 col-md-6">
+              <h4 className="text-light mb-4">Địa chỉ</h4>
               <p>
                 <i className="fa fa-map-marker-alt me-3" />
-                123 Street, New York, USA
+                123 Street, Hồ Chí Minh, Việt Nam
               </p>
               <p>
                 <i className="fa fa-phone-alt me-3" />
@@ -60,43 +61,23 @@ export default function Footer() {
                 info@example.com
               </p>
             </div>
-            <div className="col-lg-3 col-md-6">
+            <div className="col-lg-4 col-md-6">
               <h4 className="text-light mb-4">Quick Links</h4>
-              <a className="btn btn-link" href>
-                About Us
+              <a className="btn btn-link" href='/about'>
+                Về chúng tôi
               </a>
-              <a className="btn btn-link" href>
-                Contact Us
+              <a className="btn btn-link" href='/contact'>
+                Liên hệ
               </a>
-              <a className="btn btn-link" href>
-                Our Services
+              <a className="btn btn-link" href='/service'>
+                Dịch vụ
               </a>
-              <a className="btn btn-link" href>
-                Terms &amp; Condition
+              <a className="btn btn-link" href='/service'>
+                Sản phẩm
               </a>
-              <a className="btn btn-link" href>
-                Support
+              <a className="btn btn-link" href='/service'>
+                Bài viết
               </a>
-            </div>
-            <div className="col-lg-3 col-md-6">
-              <h4 className="text-light mb-4">Newsletter</h4>
-              <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-              <div
-                className="position-relative mx-auto"
-                style={{ maxWidth: "400px" }}
-              >
-                <input
-                  className="form-control bg-transparent w-100 py-3 ps-4 pe-5"
-                  type="text"
-                  placeholder="Your email"
-                />
-                <button
-                  type="button"
-                  className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"
-                >
-                  SignUp
-                </button>
-              </div>
             </div>
           </div>
         </div>

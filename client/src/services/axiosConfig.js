@@ -1,6 +1,6 @@
 import axios from "axios";
 import { parse, stringify } from "qs";
-import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../utils/contants";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, USER_INFO_KEY } from "../utils/contants";
 import { authAPI } from "./authAPI";
 
 const defaultHeader = {
@@ -44,7 +44,9 @@ axiosConfig.interceptors.response.use(
         return axiosConfig(config);
       } catch (error) {
         if (error === "Wrong RefreshToken") {
-          localStorage.clear();
+          localStorage.removeItem(USER_INFO_KEY);
+          localStorage.removeItem(ACCESS_TOKEN_KEY);
+          localStorage.removeItem(REFRESH_TOKEN_KEY);
           window.alert("Phiên làm việc hết hạn. Vui lòng đăng nhập lại!");
           window.location = "/login";
         }

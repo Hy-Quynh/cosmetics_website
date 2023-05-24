@@ -1,4 +1,4 @@
-const TOKEN_LIFE = 60
+const TOKEN_LIFE = 60 * 15
 const REFRESHTOKEN_LIFE = '30d'
 
 module.exports = {

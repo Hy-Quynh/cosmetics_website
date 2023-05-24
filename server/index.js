@@ -13,6 +13,7 @@ const categoryRouter = require("./routers/category");
 const userRouter = require("./routers/user");
 const blogRouter = require("./routers/blog");
 const productRouter = require("./routers/product");
+const publicRouter = require("./routers/public");
 
 app.use(
   cookieSession({
@@ -41,6 +42,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 routerPublic.use("/api/auth", authRouter);
+routerPublic.use("/api/public", publicRouter);
 app.use(routerPublic);
 
 routerPrivate.use(verifyToken);

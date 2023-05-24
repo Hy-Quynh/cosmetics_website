@@ -1,6 +1,7 @@
 import axiosConfig from "../axiosConfig";
 
 const URL = "/api/blog";
+const PUBLIC_URL = "/api/public";
 
 export const blogAPI = {
   getAllBlogList: async (limit, offset, search) => {
@@ -85,7 +86,9 @@ export const blogAPI = {
   },
 
   changeBlogView: async (blogId, view) => {
-    const response = await axiosConfig.put(`${URL}/view/${blogId}`, { view });
+    const response = await axiosConfig.put(`${PUBLIC_URL}/view/${blogId}`, {
+      view,
+    });
     return response;
   },
 };

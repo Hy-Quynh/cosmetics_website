@@ -74,7 +74,7 @@ export default function Orders(props) {
         <TableBody>
           {orderData.map((row) => (
             <TableRow
-              key={`dashboard-checkout-${row?.checkout_id}`}
+              key={`dashboard-checkout-${row?._id}`}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="left">

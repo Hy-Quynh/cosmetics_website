@@ -208,4 +208,26 @@ module.exports = {
       return false;
     }
   },
+
+  updateUserInfo: async (
+    id,
+    email,
+    first_name,
+    last_name,
+    address,
+    phone_number
+  ) => {
+    try {
+      const updateRes = await mysql.query(
+        `UPDATE users SET first_name='${first_name}', last_name='${last_name}', address='${address}', phone_number='${phone_number}', email='${email}' WHERE _id=${Number(
+          id
+        )}`
+      );
+      if (updateRes) return true;
+      return false;
+    } catch (error) {
+      console.log("updateUserInfo error >>>> ", error);
+      return false;
+    }
+  },
 };

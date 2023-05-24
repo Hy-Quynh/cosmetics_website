@@ -8,7 +8,7 @@ import Chart from "./components/Charts";
 import Deposits from "./components/Deposits";
 import Orders from "./components/Orders";
 import { Stack, TextField, Typography } from "@mui/material";
-import { checkoutAPI } from "../../../services/checkoutAPI";
+import { productAPI } from "../../../services/productAPI";
 const mdTheme = createTheme();
 
 function formatDate(date) {
@@ -31,7 +31,7 @@ function DashboardContent() {
   const getOrderDataByDate = async (fromDate, toDate) => {
     try {
       setFilterOrder([]);
-      const orderRes = await checkoutAPI.getListCheckout(fromDate, toDate);
+      const orderRes = await productAPI.getListCheckout(fromDate, toDate);
       if (orderRes?.success) {
         setFilterOrder(orderRes?.payload);
       }

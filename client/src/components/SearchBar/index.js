@@ -6,6 +6,9 @@ export default function SearchBar({
   handleChange,
   debounceSearch,
   handleSubmit,
+  handleClick,
+  ref,
+  customStyle,
 }) {
   return (
     <div className="homeSearchBar">
@@ -13,13 +16,16 @@ export default function SearchBar({
         <input
           type="text"
           className="searchTerm"
-          placeholder="Bạn muốn tìm kiếm bài viết gì?"
-          onChange={(event) => handleChange(event.target.value)}
+          style={customStyle}
+          placeholder="Nhập từ bạn muốn tìm kiếm"
+          onChange={(event) => handleChange(event?.target?.value)}
           onKeyUp={(event) => {
             if (event?.code === "Backspace") {
-              debounceSearch();
+              debounceSearch?.();
             }
           }}
+          ref={ref}
+          onClick={() => handleClick?.()}
         />
         <button
           type="submit"

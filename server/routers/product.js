@@ -19,4 +19,12 @@ router.put('/review/:reviewId', productController.updateUserReview)
 router.get('/review', productController.getAllReview)
 router.get('/:productId/quantity', productController.getProductQuantity)
 
+router.post('/cart', productController.checkoutCart)
+router.get('/checkout/list', productController.getListCheckout)
+router.delete('/checkout/:checkoutId', productController.deleteCheckoutById)
+router.put('/checkout/status/:checkoutId', productController.changeCheckoutStatus)
+router.get('/checkout/:checkoutId', productController.getCheckoutById)
+router.get('/checkout/user/:userId', productController.getCheckoutByUserId)
+router.get('/purchase/:productId/:userId', productController.checkUserProductPurchase)
+router.get('/selling/info', productController.getSellingProduct)
 module.exports = router;

@@ -15,6 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MainListItems from "./components/ListItems";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY, USER_INFO_KEY } from "../../utils/contants";
 
 const drawerWidth = 240;
 
@@ -106,7 +107,9 @@ function Layout(props) {
               color="inherit"
               onClick={() => {
                 navigate("/login");
-                localStorage.clear();
+                localStorage.removeItem(USER_INFO_KEY);
+                localStorage.removeItem(ACCESS_TOKEN_KEY);
+                localStorage.removeItem(REFRESH_TOKEN_KEY);
               }}
             >
               <LogoutIcon />

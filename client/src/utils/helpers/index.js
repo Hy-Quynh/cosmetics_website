@@ -1,4 +1,4 @@
-import moment from 'moment'
+import moment from "moment";
 
 const hasNumber = (string) => {
   return /\d/.test(string);
@@ -34,6 +34,8 @@ const parseJSON = (inputString, fallback) => {
     } catch (e) {
       return fallback;
     }
+  } else {
+    return fallback;
   }
 };
 
@@ -43,5 +45,5 @@ export {
   validateEmail,
   isVietnamesePhoneNumber,
   dateTimeConverter,
-  parseJSON
-}
+  parseJSON,
+};

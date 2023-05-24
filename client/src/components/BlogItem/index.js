@@ -13,7 +13,7 @@ export default function BlogItem({
         className="img-fluid"
         src={blogImage}
         alt=""
-        style={{ minHeight: "300px", minWidth: "100%" }}
+        style={{ height: "70%", minHeight: "300px", minWidth: "100%" }}
       />
       <div className="bg-light p-4">
         <a className="d-block h5 lh-base mb-4" href={`/blog/${blogId}`}>

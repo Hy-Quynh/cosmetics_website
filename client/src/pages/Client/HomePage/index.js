@@ -5,6 +5,7 @@ import AboutHomePage from "../../../assets/imgs/about-homepage.jpeg";
 import Lipstick from "../../../assets/imgs/lipstick.jpeg";
 import ListBlog from "./components/ListBlog";
 import NewProduct from "./components/NewProduct";
+import SellingProduct from "./components/SellingProduct";
 
 export default function HomePage() {
   return (
@@ -30,16 +31,16 @@ export default function HomePage() {
                         Mỹ phẩm chính hãng tốt nhất hiện nay
                       </h1>
                       <a
-                        href
+                        href='/'
                         className="btn btn-primary rounded-pill py-sm-3 px-sm-5"
                       >
-                        Products
+                        Sản phẩm
                       </a>
                       <a
                         href
                         className="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
                       >
-                        Services
+                        Dịch vụ
                       </a>
                     </div>
                   </div>
@@ -56,16 +57,16 @@ export default function HomePage() {
                         Mỹ phẩm chính hãng tốt nhất hiện nay
                       </h1>
                       <a
-                        href
+                        href='/product'
                         className="btn btn-primary rounded-pill py-sm-3 px-sm-5"
                       >
-                        Products
+                        Sản phẩm
                       </a>
                       <a
                         href
                         className="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
                       >
-                        Services
+                        Dịch vụ
                       </a>
                     </div>
                   </div>
@@ -224,365 +225,12 @@ export default function HomePage() {
         </div>
       </div>
       {/* Feature End */}
-      
+
       {/* New product */}
       <NewProduct />
 
-      {/* Product Start */}
-      <div className="container-xxl py-5">
-        <div className="container">
-          <div className="row g-0 gx-5 align-items-end">
-            <div className="col-lg-6">
-              <div
-                className="section-header text-start mb-5 wow fadeInUp"
-                data-wow-delay="0.1s"
-                style={{ maxWidth: "500px" }}
-              >
-                <h1 className="display-5 mb-3">Sản phẩm bán chạy</h1>
-                <p>Sản phẩm được ưa chuộng nhất thời gian qua</p>
-              </div>
-            </div>
-            <div
-              className="col-lg-6 text-start text-lg-end wow slideInRight"
-              data-wow-delay="0.1s"
-            >
-              <ul className="nav nav-pills d-inline-flex justify-content-end mb-5">
-                <li className="nav-item me-2">
-                  <a
-                    className="btn btn-outline-primary border-2 active"
-                    data-bs-toggle="pill"
-                    href="#tab-1"
-                  >
-                    Son môi
-                  </a>
-                </li>
-                <li className="nav-item me-2">
-                  <a
-                    className="btn btn-outline-primary border-2"
-                    data-bs-toggle="pill"
-                    href="#tab-2"
-                  >
-                    Sữa rửa mặt{" "}
-                  </a>
-                </li>
-                <li className="nav-item me-0">
-                  <a
-                    className="btn btn-outline-primary border-2"
-                    data-bs-toggle="pill"
-                    href="#tab-3"
-                  >
-                    Kem chống nắng
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="tab-content">
-            <div id="tab-1" className="tab-pane fade show p-0 active">
-              <div className="row g-4">
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.1s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 1
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 2
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.5s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 3
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.7s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 4
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.1s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 5
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.3s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 6
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.5s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 7
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-xl-3 col-lg-4 col-md-6 wow fadeInUp"
-                  data-wow-delay="0.7s"
-                >
-                  <div className="product-item">
-                    <div className="position-relative bg-light overflow-hidden">
-                      <img className="img-fluid w-100" src={Lipstick} alt="" />
-                      <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                        New
-                      </div>
-                    </div>
-                    <div className="text-center p-4">
-                      <a className="d-block h5 mb-2" href>
-                        Son môi 8
-                      </a>
-                      <span className="text-primary me-1">$19.00</span>
-                      <span className="text-body text-decoration-line-through">
-                        $29.00
-                      </span>
-                    </div>
-                    <div className="d-flex border-top">
-                      <small className="w-50 text-center border-end py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-eye text-primary me-2" />
-                          View detail
-                        </a>
-                      </small>
-                      <small className="w-50 text-center py-2">
-                        <a className="text-body" href>
-                          <i className="fa fa-shopping-bag text-primary me-2" />
-                          Add to cart
-                        </a>
-                      </small>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-12 text-center wow fadeInUp"
-                  data-wow-delay="0.1s"
-                >
-                  <a className="btn btn-primary rounded-pill py-3 px-5" href>
-                    Xem thêm
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Product End */}
-
+      {/* Selling product */}
+      <SellingProduct />
       <ListBlog />
     </div>
   );

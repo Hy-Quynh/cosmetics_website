@@ -13,6 +13,10 @@ import BlogDetailPage from "../pages/Client/BlogDetail";
 import BlogPage from "../pages/Client/Blog";
 import AdminProduct from "../pages/Admin/Product";
 import ProductDetail from "../pages/Client/ProductDetail";
+import Product from "../pages/Client/Product";
+import CartPage from "../pages/Client/Cart";
+import PersonalPage from "../pages/Client/PersonalPage";
+import AdminOrder from "../pages/Admin/Checkout";
 
 const ClientLayoutPage = [
   {
@@ -30,6 +34,18 @@ const ClientLayoutPage = [
   {
     path: "/product/:productId",
     page: <ProductDetail />,
+  },
+  {
+    path: "/product",
+    page: <Product />,
+  },
+  {
+    path: "/cart",
+    page: <CartPage />,
+  },
+  {
+    path: "/personal",
+    page: <PersonalPage />,
   },
 ];
 
@@ -53,6 +69,10 @@ const AdminLayoutPage = [
   {
     path: "/admin/account",
     page: <AdminAccount />,
+  },
+  {
+    path: "/admin/order",
+    page: <AdminOrder />,
   },
 ];
 
