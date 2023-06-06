@@ -113,12 +113,12 @@ export default function HomePage() {
               <p className="mb-4">
                 Cosmetics - thương hiệu đi đầu trong ngành phân phối mỹ phẩm
                 chính hãng, phục vụ cho nhu cầu mua sắm & làm đẹp của hàng triệu
-                khách hàng tại Việt Nam. Có mặt từ năm 2012, Nuty đã mở rộng thị
+                khách hàng tại Việt Nam. Có mặt từ năm 2012, Cosmetic đã mở rộng thị
                 phần & nhanh chóng trở thành một trong những địa chỉ mua sắm mỹ
-                phẩm uy tín trong lòng khách hàng, đến nay Nuty đã có 9 showroom
+                phẩm uy tín trong lòng khách hàng, đến nay Cosmetic đã có 9 showroom
                 từ Bắc chí Nam. Với sự phát triển không ngừng trong suốt 10 năm
                 qua, các thương hiệu mỹ phẩm trong và ngoài nước đồng loạt ký
-                hợp đồng chiến lược cùng Nuty Cosmetics để mang đến những sản
+                hợp đồng chiến lược cùng Cosmetic Cosmetics để mang đến những sản
                 phẩm chất lượng, hiệu quả và an toàn với người tiêu dùng.
               </p>
               <p>
@@ -133,11 +133,8 @@ export default function HomePage() {
               </p>
               <p>
                 <i className="fa fa-check text-primary me-3" />
-                Giá rẻ nhất thị trường - Ở đâu rẻ hơn NUTY hoàn tiền chênh lệch
+                Giá rẻ nhất thị trường - Ở đâu rẻ hơn Cosmetic hoàn tiền chênh lệch
               </p>
-              <a className="btn btn-primary rounded-pill py-3 px-5 mt-3" href>
-                Tìm hiểu thêm
-              </a>
             </div>
           </div>
         </div>
@@ -169,12 +166,6 @@ export default function HomePage() {
                 <p className="mb-4">
                   Hỗ trợ phí ship rẻ nhất cho các quận, tỉnh thành trên cả nước.
                 </p>
-                <a
-                  className="btn btn-outline-primary border-2 py-2 px-4 rounded-pill"
-                  href
-                >
-                  Tìm hiểu thêm
-                </a>
               </div>
             </div>
             <div
@@ -191,12 +182,6 @@ export default function HomePage() {
                 <p className="mb-4">
                   Giao hàng nhanh chóng trong nội thành HCM và Hà Nội.
                 </p>
-                <a
-                  className="btn btn-outline-primary border-2 py-2 px-4 rounded-pill"
-                  href
-                >
-                  Tìm hiểu thêm
-                </a>
               </div>
             </div>
             <div
@@ -213,12 +198,6 @@ export default function HomePage() {
                 <p className="mb-4">
                   Đảm bảo tất cả sản phẩm được bán ra là 100% chính hãng
                 </p>
-                <a
-                  className="btn btn-outline-primary border-2 py-2 px-4 rounded-pill"
-                  href
-                >
-                  Tìm hiểu thêm
-                </a>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import TopicIcon from "@mui/icons-material/Topic";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
 export const ACCESS_TOKEN_KEY = "access_token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -49,5 +50,11 @@ export const ADMIN_ROLE = [
     value: "admin-account",
     href: "/admin/account",
     icon: <PeopleIcon />,
+  },
+  {
+    label: "Góp ý",
+    value: "admin-contact",
+    href: "/admin/contact",
+    icon: <ContactPhoneIcon />,
   },
 ];

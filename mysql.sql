@@ -194,3 +194,14 @@ CREATE TABLE product_checkout_detail (
     REFERENCES product_checkout(_id)
 );
 
+CREATE TABLE contact (
+	_id INT NOT NULL AUTO_INCREMENT,
+	customer_name varchar(255) NULL,
+	customer_email varchar(255) NULL,
+	customer_phone varchar(255) NULL,
+	contact_subject text NULL,
+	contact_description text NULL,
+	created_day timestamp NULL,
+	CONSTRAINT contact_pkey PRIMARY KEY (_id)
+);
+

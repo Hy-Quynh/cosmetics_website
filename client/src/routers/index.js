@@ -17,6 +17,9 @@ import Product from "../pages/Client/Product";
 import CartPage from "../pages/Client/Cart";
 import PersonalPage from "../pages/Client/PersonalPage";
 import AdminOrder from "../pages/Admin/Checkout";
+import Contact from "../pages/Client/Contact";
+import AdminContact from "../pages/Admin/Contact";
+import AboutPage from "../pages/Client/About";
 
 const ClientLayoutPage = [
   {
@@ -47,6 +50,14 @@ const ClientLayoutPage = [
     path: "/personal",
     page: <PersonalPage />,
   },
+  {
+    path: "/contact",
+    page: <Contact />,
+  },
+  {
+    path: "/about",
+    page: <AboutPage />,
+  },
 ];
 
 const AdminLayoutPage = [
@@ -73,6 +84,10 @@ const AdminLayoutPage = [
   {
     path: "/admin/order",
     page: <AdminOrder />,
+  },
+  {
+    path: "/admin/contact",
+    page: <AdminContact />,
   },
 ];
 

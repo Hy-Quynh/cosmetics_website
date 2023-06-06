@@ -62,20 +62,20 @@ export default function Footer() {
               </p>
             </div>
             <div className="col-lg-4 col-md-6">
-              <h4 className="text-light mb-4">Quick Links</h4>
-              <a className="btn btn-link" href='/about'>
+              <h4 className="text-light mb-4">Đường dẫn</h4>
+              <a className="btn btn-link" href="/about">
                 Về chúng tôi
               </a>
-              <a className="btn btn-link" href='/contact'>
+              <a className="btn btn-link" href="/contact">
                 Liên hệ
               </a>
-              <a className="btn btn-link" href='/service'>
+              <a className="btn btn-link" href="/service">
                 Dịch vụ
               </a>
-              <a className="btn btn-link" href='/service'>
+              <a className="btn btn-link" href="/service">
                 Sản phẩm
               </a>
-              <a className="btn btn-link" href='/service'>
+              <a className="btn btn-link" href="/service">
                 Bài viết
               </a>
             </div>

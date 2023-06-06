@@ -14,6 +14,7 @@ const userRouter = require("./routers/user");
 const blogRouter = require("./routers/blog");
 const productRouter = require("./routers/product");
 const publicRouter = require("./routers/public");
+const contactRouter = require("./routers/contact");
 
 app.use(
   cookieSession({
@@ -50,20 +51,9 @@ routerPrivate.use("/api/category", categoryRouter);
 routerPrivate.use("/api/blog", blogRouter);
 routerPrivate.use("/api/user", userRouter);
 routerPrivate.use("/api/product", productRouter);
-app.use(routerPrivate);
+routerPrivate.use("/api/contact", contactRouter);
 
-// app.use("/api/auth", authRouter);
-// app.use("/api/user", userRouter);
-// app.use("/api/category", categoryRouter);
-// app.use("/api/role", roleRouter);
-// app.use("/api/post", postRouter);
-// app.use("/api/product", productRouter);
-// app.use("/api/helper", helperRouter);
-// app.use("/api/cooking-recipe", cookingRecipeRouter);
-// app.use("/api/contact", contactRouter);
-// app.use("/api/chat", chatRouter);
-// app.use("/api/electricity-water", electricityWaterRouter);
-// app.use("/api/livestream", liveStreamRouter);
+app.use(routerPrivate);
 
 const PORT = process.env.PORT || 5005;
 app.listen(PORT, () => console.log(`App running on port: ${PORT}`));
