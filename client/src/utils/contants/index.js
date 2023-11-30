@@ -58,3 +58,10 @@ export const ADMIN_ROLE = [
     icon: <ContactPhoneIcon />,
   },
 ];
+
+export const ORDER_STATUS = {
+  CANCEL: 0,
+  CONFIRM: 1,
+  SHIPPING: 2,
+  DELIVERED: 3
+}

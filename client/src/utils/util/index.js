@@ -2,7 +2,6 @@ import { USER_CART_INFO, USER_INFO_KEY } from "../contants";
 import { parseJSON } from "../helpers";
 
 export const addProductToCart = (cardData) => {
-  console.log('cardData >>> ', cardData);
   const userData = parseJSON(localStorage.getItem(USER_INFO_KEY), {});
 
   const currCart = parseJSON(

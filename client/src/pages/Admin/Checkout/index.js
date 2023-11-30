@@ -15,7 +15,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { FORMAT_NUMBER } from "../../../utils/contants"; 
+import { FORMAT_NUMBER, ORDER_STATUS } from "../../../utils/contants"; 
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ViewDataDrawer from "./components/CheckoutDrawer";
 import { toast } from "react-toastify";
@@ -55,10 +55,10 @@ const columns = [
 
 const STATUS_FILTER = [
   { label: "Tất cả", value: -1 },
-  { label: "Đã huỷ", value: 0 },
-  { label: "Đặt hàng thành công", value: 1 },
-  { label: "Đang giao hàng", value: 2 },
-  { label: "Đã giao hàng", value: 3 },
+  { label: "Đã huỷ", value: ORDER_STATUS.CANCEL },
+  { label: "Đặt hàng thành công", value: ORDER_STATUS.CONFIRM },
+  { label: "Đang giao hàng", value: ORDER_STATUS.SHIPPING },
+  { label: "Đã giao hàng", value: ORDER_STATUS.DELIVERED },
 ];
 
 export default function AdminOrder() {

@@ -3,12 +3,12 @@ import { productAPI } from "../../../../../services/productAPI";
 import ProductItem from "../../../../../components/ProductItem";
 
 export default function SellingProduct() {
-  const [sellingProduct, getSellingProduct] = React.useState([]);
+  const [sellingProduct, setSellingProduct] = React.useState([]);
 
   const getSellingProductInfo = async () => {
     const productList = await productAPI.getSellingProduct();
     if (productList?.success) {
-      getSellingProduct(productList?.payload);
+      setSellingProduct(productList?.payload);
     }
   };
 
