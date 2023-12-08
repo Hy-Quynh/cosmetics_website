@@ -27,6 +27,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { userAPI } from "../../../services/userAPI";
 
 const PAYMENT_METHOD = [
   { label: "Thanh toán khi nhận hàng", value: "COD" },
@@ -77,12 +78,24 @@ export default function CartPage() {
   const userData = parseJSON(localStorage.getItem(USER_INFO_KEY), {});
   const navigate = useNavigate();
 
+  const getUserData = async () => {
+    try {
+      const userRes = await userAPI.getUserInfo(userData?._id);
+
+      if (userRes?.success) {
+        setUserInfo(userRes?.payload);
+      }
+    } catch (error) {
+      console.log("get user data error: ", error);
+    }
+  };
+
   useEffect(() => {
     if (!userData?._id) {
       toast.error("Bạn cần đăng nhập để thực hiện chức năng này");
       navigate("/login");
     } else {
-      setUserInfo(userData);
+      getUserData();
     }
   }, []);
 

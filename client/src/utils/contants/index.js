@@ -5,6 +5,8 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 
 export const ACCESS_TOKEN_KEY = "access_token";
 export const REFRESH_TOKEN_KEY = "refresh_token";
@@ -57,6 +59,18 @@ export const ADMIN_ROLE = [
     href: "/admin/contact",
     icon: <ContactPhoneIcon />,
   },
+  {
+    label: "Hướng dẫn mua hàng",
+    value: "admin-guide",
+    href: "/admin/buy-guide",
+    icon: <AutoStoriesIcon />,
+  },
+  {
+    label: "Tin nhắn",
+    value: "admin-chat",
+    href: "/admin/chat",
+    icon: <TextsmsOutlinedIcon />,
+  },
 ];
 
 export const ORDER_STATUS = {
@@ -65,3 +79,5 @@ export const ORDER_STATUS = {
   SHIPPING: 2,
   DELIVERED: 3
 }
+
+export const CHAT_HOST = "http://localhost:5005";

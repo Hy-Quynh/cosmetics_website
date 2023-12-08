@@ -3,6 +3,7 @@ import { FORMAT_NUMBER, USER_INFO_KEY } from "../../utils/contants";
 import { parseJSON } from "../../utils/helpers";
 import { toast } from "react-toastify";
 import { addProductToCart } from "../../utils/util";
+import moment from "moment";
 
 export default function ProductItem({
   image,
@@ -12,6 +13,8 @@ export default function ProductItem({
   salePrice,
   id,
   currentQuantity,
+  start_new,
+  end_new,
 }) {
   const userData = parseJSON(localStorage.getItem(USER_INFO_KEY));
 
@@ -24,7 +27,9 @@ export default function ProductItem({
           alt=""
           style={{ height: "300px" }}
         />
-        {isNew ? (
+        {start_new && end_new && 
+        moment(moment().format('DD-MM-YYYY'), 'DD-MM-YYYY').isSameOrAfter(moment(moment(start_new).format('DD-MM-YYYY'), 'DD-MM-YYYY')) &&
+        moment(moment().format('DD-MM-YYYY'), 'DD-MM-YYYY').isSameOrBefore(moment(moment(end_new).format('DD-MM-YYYY'), 'DD-MM-YYYY'))  ? (
           <div className="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
             New
           </div>

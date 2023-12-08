@@ -205,3 +205,27 @@ CREATE TABLE contact (
 	CONSTRAINT contact_pkey PRIMARY KEY (_id)
 );
 
+CREATE TABLE buy_guide (
+	_id INT NOT NULL AUTO_INCREMENT,
+    title text,
+    guide_description text NULL,
+    created_day timestamp NULL,
+    status int4 NULL,
+    CONSTRAINT buy_guide_pkey PRIMARY KEY (_id)
+);
+
+CREATE TABLE buy_guide (
+	_id INT NOT NULL AUTO_INCREMENT,
+    title text,
+    guide_description text NULL,
+    created_day timestamp NULL,
+    status int4 NULL,
+    CONSTRAINT buy_guide_pkey PRIMARY KEY (_id)
+);
+
+alter table product add column start_new timestamp NULL;
+alter table product add column end_new timestamp NULL;
+
+
+
+

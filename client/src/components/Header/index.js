@@ -137,8 +137,8 @@ export default function Header() {
               <a href="/about" className="nav-item nav-link">
                 Về chúng tôi
               </a>
-              <a href="/about" className="nav-item nav-link">
-                Giới thiệu
+              <a href="/buy-guide" className="nav-item nav-link">
+                Hướng dẫn
               </a>
             </div>
             <div className="d-none d-lg-flex ms-2">

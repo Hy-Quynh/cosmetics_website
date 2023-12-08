@@ -70,6 +70,8 @@ module.exports = {
       sale_price,
       product_category,
       product_quantity,
+      start_new,
+      end_new
     } = productData;
 
     const response = await createNewProduct(
@@ -79,7 +81,9 @@ module.exports = {
       product_price,
       sale_price,
       product_category,
-      product_quantity
+      product_quantity,
+      start_new,
+      end_new
     );
     res.send({ success: true, payload: response });
   }),

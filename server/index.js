@@ -6,6 +6,7 @@ const routerPrivate = express.Router();
 const routerPublic = express.Router();
 const cors = require("cors");
 require("dotenv").config();
+const http = require("http");
 
 const verifyToken = require("./auth/checkToken");
 const authRouter = require("./routers/auth");
@@ -15,6 +16,16 @@ const blogRouter = require("./routers/blog");
 const productRouter = require("./routers/product");
 const publicRouter = require("./routers/public");
 const contactRouter = require("./routers/contact");
+const buyGuideRouter = require("./routers/buy_guide");
+const chatRouter = require("./routers/chat");
+const { createUserChat, createUserChatReply, getUserChatMessage, getAllUserHaveChat } = require("./models/chat");
+
+const server = http.createServer(app);
+const socketIo = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 app.use(
   cookieSession({
@@ -39,6 +50,35 @@ app.use(function (req, res, next) {
   next();
 });
 
+// ! ================== connect socket ... ================== //
+socketIo.on("connection", (socket) => {
+  console.log("New client connected" + socket.id);
+  socket.on("sendDataClient", async function (data) {
+    const { userId, message, adminId, type } = data;
+    let createRes = false
+    if (type === 'user-chat'){
+      createRes = await createUserChat(userId, message);
+    }else{
+      createRes = await createUserChatReply(userId, message, adminId);
+    } 
+
+    if (createRes) {
+      const chatData = await getUserChatMessage(userId);
+      chatData.sort(function (x, y) {
+        return x.chatDate - y.chatDate;
+      });
+      socketIo.emit("sendDataServer", { data: chatData });
+      const newAllUser = await getAllUserHaveChat();
+      socketIo.emit("sendListUserServer", { data: newAllUser });
+    }
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
+});
+
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -52,8 +92,10 @@ routerPrivate.use("/api/blog", blogRouter);
 routerPrivate.use("/api/user", userRouter);
 routerPrivate.use("/api/product", productRouter);
 routerPrivate.use("/api/contact", contactRouter);
+routerPrivate.use("/api/buy-guide", buyGuideRouter);
+routerPrivate.use("/api/chat", chatRouter);
 
 app.use(routerPrivate);
 
 const PORT = process.env.PORT || 5005;
-app.listen(PORT, () => console.log(`App running on port: ${PORT}`));
+server.listen(PORT, () => console.log(`App running on port: ${PORT}`));

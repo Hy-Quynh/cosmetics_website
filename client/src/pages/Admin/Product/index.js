@@ -35,6 +35,8 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ViewProductDrawer from "./components/ViewProductDrawer";
 import BraftEditor from "braft-editor";
 import SearchBar from "../../../components/SearchBar";
+import moment from "moment";
+import { formatDate } from "../Dashboard";
 
 const maxFileSize = 500000; //100 kb
 const controls = [
@@ -100,6 +102,8 @@ export default function AdminProduct() {
     product_category: -1,
     product_id: -1,
     product_quantity: -1,
+    start_new: "",
+    end_new: ""
   });
   const [editProductError, setEditProductError] = useState({
     status: false,
@@ -161,20 +165,41 @@ export default function AdminProduct() {
       product_category,
       product_quantity,
       sale_price,
+      start_new,
+      end_new
     } = editProduct;
     if (
       product_name.trim().length <= 0 ||
       product_description.trim().length <= 0 ||
       (addProductModal.type === "add" && typeof product_image === "string") ||
-      product_category === -1
+      product_category === -1 || start_new?.length <= 0 || end_new?.length <= 0
     ) {
       setEditProductError({
         status: true,
         type: "error",
-        message: "Danh mục, tên, mô tả và hình ảnh không được bỏ trống",
+        message: "Danh mục, tên, mô tả, ngày tháng và hình ảnh không được bỏ trống",
       });
       return false;
     }
+
+    if (moment(moment().format('YYYY-MM-DD'), 'YYYY-MM-DD').isAfter(moment(start_new , 'YYYY-MM-DD')) && addProductModal.type === "add"){
+      setEditProductError({
+        status: true,
+        type: "error",
+        message: "Ngày bắt đầu không được nhỏ hơn ngày hiện tại",
+      });
+      return false;
+    }
+
+    if (moment(end_new, 'YYYY-MM-DD').isBefore(moment(start_new , 'YYYY-MM-DD'))){
+      setEditProductError({
+        status: true,
+        type: "error",
+        message: "Ngày kết thúc không được nhỏ hơn ngày bắt đầu",
+      });
+      return false;
+    }
+
     if (Number(product_price) <= 0 || Number(sale_price) < 0) {
       setEditProductError({
         status: true,
@@ -251,7 +276,7 @@ export default function AdminProduct() {
       }
       return false;
     }
-    /*Update category*/
+    /*Update product*/
     const updateRes = await productAPI.updateProductData(
       productData,
       editProduct?.product_id
@@ -426,6 +451,37 @@ export default function AdminProduct() {
               })
             }
           />
+
+          <CustomInput
+            label="Ngày bắt đầu new"
+            defaultValue={editProduct?.start_new || 0}
+            type="date"
+            id="start-new"
+            variant="filled"
+            style={{ marginTop: 11, textAlign: "left" }}
+            onChange={(event) =>
+              setEditProduct({
+                ...editProduct,
+                start_new: event.target.value,
+              })
+            }
+          />
+
+          <CustomInput
+            label="Ngày kết thúc new"
+            defaultValue={editProduct?.end_new || 0}
+            type="date"
+            id="end-new"
+            variant="filled"
+            style={{ marginTop: 11, textAlign: "left" }}
+            onChange={(event) =>
+              setEditProduct({
+                ...editProduct,
+                end_new: event.target.value,
+              })
+            }
+          />
+
           <div className="editor-wrapper" style={{ marginTop: "20px" }}>
             <label style={{ marginBottom: "10px" }}>Mô tả sản phẩm: </label>
             <BraftEditor
@@ -508,6 +564,8 @@ export default function AdminProduct() {
                 product_price: 0,
                 product_quantity: 0,
                 product_category: -1,
+                start_new: "",
+                end_new: ""
               });
               setEditProductError({ status: false, type: "", message: "" });
               setAddProductModal({ status: true, type: "add" });
@@ -612,6 +670,8 @@ export default function AdminProduct() {
                                       sale_price: row?.sale_price,
                                       product_category: row?.product_category,
                                       product_quantity: row?.init_quantity,
+                                      start_new: row?.start_new ? formatDate(row?.start_new) : '',
+                                      end_new: row?.end_new ? formatDate(row?.end_new) : ''
                                     });
                                     setBraftValue(
                                       BraftEditor?.createEditorState?.(

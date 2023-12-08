@@ -17,6 +17,9 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import ViewDataDrawer from './CheckoutDrawer';
 import { parseJSON, dateTimeConverter } from '../../../../utils/helpers';
 import { productAPI } from '../../../../services/productAPI';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CustomPopover from '../../../../components/CustomPopover';
+import { toast } from 'react-toastify';
 
 const columns = [
   { id: 'checkout_date', label: 'Ngày đặt hàng', width: 200, align: 'center' },
@@ -42,6 +45,7 @@ export default function UserCheckout() {
   const [visibleViewDataDrawer, setVisibleViewDataDrawer] = useState(false);
   const [viewData, setViewData] = useState({});
   const userData = parseJSON(localStorage.getItem(USER_INFO_KEY), {});
+  const [popoverId, setPopoverId] = useState("");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -91,6 +95,21 @@ export default function UserCheckout() {
     }
   };
 
+  const handleCancelOrder = async (checkoutId) => {
+    try {
+      const res = await productAPI.changeCheckoutStatus(ORDER_STATUS.CANCEL, checkoutId);
+      if (res?.success) {
+        setPopoverId('')
+        getListProduct();
+        toast.success("Huỷ đơn đặt hàng thành công");
+      } else {
+        toast.error("Huỷ đơn đặt hàng thất bại");
+      }
+    } catch (error) {
+      toast.error("Huỷ đơn đặt hàng thất bại");
+    }
+  }
+
   return (
     <>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -129,6 +148,7 @@ export default function UserCheckout() {
                                 flexDirection={'row'}
                                 justifyContent='center'
                               >
+                                {/*View detail*/}
                                 <Button
                                   sx={{
                                     height: '30px',
@@ -147,6 +167,39 @@ export default function UserCheckout() {
                                     <RemoveRedEyeIcon />
                                   </Tooltip>
                                 </Button>
+
+                                {/*Cancel*/}
+                                {row?.status === ORDER_STATUS.CONFIRM ? (
+                                  <CustomPopover
+                                    open={popoverId === row?._id}
+                                    onClose={() => setPopoverId('')}
+                                    handleSubmit={() =>
+                                      handleCancelOrder(row?._id)
+                                    }
+                                    noti='Bạn có chắc chắn muốn huỷ đơn hàng?'
+                                  >
+                                    <Button
+                                      sx={{
+                                        height: '30px',
+                                        padding: 0,
+                                        width: 'fit-content',
+                                        minWidth: '30px',
+                                      }}
+                                      variant='text'
+                                      color='success'
+                                      onClick={() => {
+                                        setPopoverId(row?._id);
+                                      }}
+                                    >
+                                      <Tooltip
+                                        title='Huỷ đơn hàng'
+                                        placement='top'
+                                      >
+                                        <CancelIcon sx={{ color: 'red' }} />
+                                      </Tooltip>
+                                    </Button>
+                                  </CustomPopover>
+                                ) : null}
                               </Stack>
                             ) : column.id === 'checkout_date' ? (
                               <div style={{ fontWeight: 700 }}>

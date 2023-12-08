@@ -13,6 +13,7 @@ import {
   Button,
   Stack,
   TextField,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { FORMAT_NUMBER, ORDER_STATUS } from "../../../utils/contants"; 
@@ -22,6 +23,8 @@ import { toast } from "react-toastify";
 import { dateTimeConverter } from "../../../utils/helpers";
 import ChangeCheckoutStatusPopover from "./components/ChangeStatusPopover";
 import { productAPI } from "../../../services/productAPI";
+import CancelIcon from '@mui/icons-material/Cancel';
+import CustomPopover from "../../../components/CustomPopover";
 
 const columns = [
   { id: "stt", label: "Số thứ tự", minWidth: 70, align: "center" },
@@ -71,6 +74,7 @@ export default function AdminOrder() {
   const [fromDateFilter, setFromDateFilter] = useState("");
   const [toDateFilter, setToDateFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState(-1);
+  const [popoverId, setPopoverId] = useState("");
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -94,15 +98,9 @@ export default function AdminOrder() {
       const res = await productAPI.changeCheckoutStatus(status, checkoutId);
 
       if (res?.success) {
-        const product = [...listOrder];
-        const findCheckoutProduct = product?.findIndex(
-          (item) => item?._id === checkoutId
-        );
-        if (findCheckoutProduct !== -1) {
-          product[findCheckoutProduct].status = status;
-          setListOrder(product);
-        } else {
-          getListCheckoutData();
+        getListCheckoutData();
+        if (changeStatusPopoverId){
+          setChangeStatusPopoverId('')
         }
         toast.success("Đổi trạng thái đơn đặt hàng thành công");
       } else {
@@ -114,35 +112,34 @@ export default function AdminOrder() {
   };
 
   const displayStatus = (status, checkoutId) => {
-    if (status === 0) {
+    if (status === ORDER_STATUS.CANCEL) {
       return (
         <ChangeCheckoutStatusPopover
           visible={changeStatusPopoverId === checkoutId}
           onClose={() => setChangeStatusPopoverId("")}
           currentStatus={status}
-          handleSubmit={(selectStatus) =>
-            handleChangeCheckoutStatus(selectStatus, checkoutId)
-          }
         >
           <Alert
             color="error"
             icon={false}
-            onClick={() => setChangeStatusPopoverId(checkoutId)}
-            sx={{ cursor: "pointer" }}
           >
             Đã huỷ
           </Alert>
         </ChangeCheckoutStatusPopover>
       );
-    } else if (status === 1) {
+    } else if (status === ORDER_STATUS.CONFIRM) {
       return (
         <ChangeCheckoutStatusPopover
           visible={changeStatusPopoverId === checkoutId ? true : false}
           onClose={() => setChangeStatusPopoverId("")}
           currentStatus={status}
-          handleSubmit={(selectStatus) =>
+          handleSubmit={(selectStatus) =>{
+            if (selectStatus === ORDER_STATUS.DELIVERED){
+              return toast.error('Không thể chọn trạng thái này');
+            }
+
             handleChangeCheckoutStatus(selectStatus, checkoutId)
-          }
+          }}
         >
           <Alert
             color="warning"
@@ -154,39 +151,39 @@ export default function AdminOrder() {
           </Alert>
         </ChangeCheckoutStatusPopover>
       );
-    } else if (status === 2) {
+    } else if (status === ORDER_STATUS.SHIPPING) {
       return (
         <ChangeCheckoutStatusPopover
           visible={changeStatusPopoverId === checkoutId ? true : false}
           onClose={() => setChangeStatusPopoverId("")}
           currentStatus={status}
-          handleSubmit={(selectStatus) =>
+          handleSubmit={(selectStatus) =>{
+            if (selectStatus === ORDER_STATUS.CONFIRM){
+              return toast.error('Không thể chọn trạng thái này');
+            }
             handleChangeCheckoutStatus(selectStatus, checkoutId)
-          }
+          }}
         >
           <Alert
             color="primary"
             icon={false}
             onClick={() => setChangeStatusPopoverId(checkoutId)}
+            sx={{ cursor: "pointer" }}
           >
             Đang giao hàng
           </Alert>
         </ChangeCheckoutStatusPopover>
       );
-    } else if (status === 3) {
+    } else if (status === ORDER_STATUS.DELIVERED) {
       return (
         <ChangeCheckoutStatusPopover
           visible={changeStatusPopoverId === checkoutId ? true : false}
           onClose={() => setChangeStatusPopoverId("")}
           currentStatus={status}
-          handleSubmit={(selectStatus) =>
-            handleChangeCheckoutStatus(selectStatus, checkoutId)
-          }
         >
           <Alert
             color="success"
             icon={false}
-            onClick={() => setChangeStatusPopoverId(checkoutId)}
           >
             Đã giao hàng
           </Alert>
@@ -343,51 +340,88 @@ export default function AdminOrder() {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.id === "action" ? (
+                            {column.id === 'action' ? (
                               <Stack
-                                flexDirection={"row"}
-                                justifyContent="center"
+                                flexDirection={'row'}
+                                justifyContent='center'
                               >
                                 <Button
                                   sx={{
-                                    height: "30px",
+                                    height: '30px',
                                     padding: 0,
-                                    width: "fit-content",
-                                    minWidth: "30px",
+                                    width: 'fit-content',
+                                    minWidth: '30px',
                                   }}
-                                  variant="text"
-                                  color="success"
+                                  variant='text'
+                                  color='success'
                                   onClick={() => {
                                     setViewData(row);
                                     setVisibleViewDataDrawer(true);
                                   }}
                                 >
-                                  <RemoveRedEyeIcon />
+                                  <Tooltip title='Xem chi tiết' placement='top'>
+                                    <RemoveRedEyeIcon />
+                                  </Tooltip>
                                 </Button>
+
+                                {/*Cancel*/}
+                                {row?.status === ORDER_STATUS.CONFIRM ||
+                                row?.status === ORDER_STATUS.SHIPPING ? (
+                                  <CustomPopover
+                                    open={popoverId === row?._id}
+                                    onClose={() => setPopoverId('')}
+                                    handleSubmit={() =>{
+                                      handleChangeCheckoutStatus(ORDER_STATUS.CANCEL, row?._id)
+                                      setPopoverId('');
+                                    }}
+                                    noti='Bạn có chắc chắn muốn huỷ đơn hàng?'
+                                  >
+                                    <Button
+                                      sx={{
+                                        height: '30px',
+                                        padding: 0,
+                                        width: 'fit-content',
+                                        minWidth: '30px',
+                                      }}
+                                      variant='text'
+                                      color='success'
+                                      onClick={() => {
+                                        setPopoverId(row?._id);
+                                      }}
+                                    >
+                                      <Tooltip
+                                        title='Huỷ đơn hàng'
+                                        placement='top'
+                                      >
+                                        <CancelIcon sx={{ color: 'red' }} />
+                                      </Tooltip>
+                                    </Button>
+                                  </CustomPopover>
+                                ) : null}
                               </Stack>
-                            ) : column.id === "checkout_date" ? (
+                            ) : column.id === 'checkout_date' ? (
                               <div>{dateTimeConverter(value)}</div>
-                            ) : column.id === "user_name" ? (
+                            ) : column.id === 'user_name' ? (
                               <div>
                                 {row?.user_first_name +
-                                  " " +
+                                  ' ' +
                                   row?.user_last_name}
                               </div>
-                            ) : column.id === "stt" ? (
+                            ) : column.id === 'stt' ? (
                               <div
                                 style={{
-                                  textAlign: "center",
-                                  color: "red",
-                                  fontWeight: "bold",
+                                  textAlign: 'center',
+                                  color: 'red',
+                                  fontWeight: 'bold',
                                 }}
                               >
                                 {rowIndex + 1}
                               </div>
-                            ) : column.id === "total_price" ? (
+                            ) : column.id === 'total_price' ? (
                               FORMAT_NUMBER.format(value)
-                            ) : column.id === "status" ? (
+                            ) : column.id === 'status' ? (
                               displayStatus(value, row?._id)
-                            ) : column.id === "payment_method" ? (
+                            ) : column.id === 'payment_method' ? (
                               diplayPaymentMethod(row?.payment_method)
                             ) : (
                               value

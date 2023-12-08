@@ -104,6 +104,8 @@ export default function NewProduct() {
                       price={item?.product_price}
                       salePrice={item?.sale_price}
                       currentQuantity={item?.current_quantity}
+                      start_new={item?.start_new}
+                      end_new={item?.end_new}
                     />
                   </div>
                 );

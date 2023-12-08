@@ -25,7 +25,9 @@ const pool = mysql.createPool({ ...mysqlConfig, charset: "utf8" });
 const query = async (queryStr) => {
   return new Promise((resolve, reject) => {
     pool.getConnection(function (err, connection) {
+      console.log('err >> ', err);
       connection.query(queryStr, function (err, rows) {
+        console.log('err 2 >> ', err);
         connection.release();
         return resolve(rows);
       });

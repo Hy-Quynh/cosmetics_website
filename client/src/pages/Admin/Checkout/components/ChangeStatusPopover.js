@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CustomPopover from "../../../../components/CustomPopover";
+import { ORDER_STATUS } from "../../../../utils/contants";
 
 export default function ChangeCheckoutStatusPopover(props) {
   const [selectStatus, setSelectStatus] = useState(-1);
@@ -24,16 +25,15 @@ export default function ChangeCheckoutStatusPopover(props) {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "start",
             alignItems: "center",
             flexWrap: "wrap",
           }}
         >
           {[
-            { label: "Đã huỷ", value: 0 },
-            { label: "Đã đặt hàng", value: 1 },
-            { label: "Đang vận chuyển", value: 2 },
-            { label: "Đã giao hàng", value: 3 },
+            { label: "Đã đặt hàng", value: ORDER_STATUS.CONFIRM },
+            { label: "Đang vận chuyển", value: ORDER_STATUS.SHIPPING },
+            { label: "Đã giao hàng", value: ORDER_STATUS.DELIVERED },
           ].map((statusItem) => {
             return (
               <div

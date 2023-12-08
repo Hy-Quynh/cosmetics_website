@@ -20,6 +20,9 @@ import AdminOrder from "../pages/Admin/Checkout";
 import Contact from "../pages/Client/Contact";
 import AdminContact from "../pages/Admin/Contact";
 import AboutPage from "../pages/Client/About";
+import AdminBuyGuide from "../pages/Admin/GuyBuide";
+import BuyGuide from "../pages/Client/BuyGuide";
+import AdminChat from "../pages/Admin/Chat";
 
 const ClientLayoutPage = [
   {
@@ -58,6 +61,10 @@ const ClientLayoutPage = [
     path: "/about",
     page: <AboutPage />,
   },
+  {
+    path: "/buy-guide",
+    page: <BuyGuide />,
+  },
 ];
 
 const AdminLayoutPage = [
@@ -88,6 +95,14 @@ const AdminLayoutPage = [
   {
     path: "/admin/contact",
     page: <AdminContact />,
+  },
+  {
+    path: "/admin/buy-guide",
+    page: <AdminBuyGuide />,
+  },
+  {
+    path: "/admin/chat",
+    page: <AdminChat />,
   },
 ];
 

@@ -100,18 +100,20 @@ module.exports = {
     product_price,
     sale_price,
     product_category,
-    product_quantity
+    product_quantity,
+    start_new, 
+    end_new
   ) => {
     try {
       const res =
         await mysql.query(`INSERT INTO product(product_name, product_description, product_image, product_price, sale_price,
-        product_category, product_status, create_at, init_quantity, current_quantity) VALUES('${product_name}', '${product_description}', '${product_image}', ${Number(
+        product_category, product_status, create_at, init_quantity, current_quantity, start_new, end_new) VALUES('${product_name}', '${product_description}', '${product_image}', ${Number(
           product_price
         )}, ${Number(sale_price)}, ${Number(
           product_category
         )}, 1, Now(), ${Number(product_quantity)}, ${Number(
           product_quantity
-        )})`);
+        )}, '${start_new}', '${end_new}')`);
 
       return res ? true : false;
     } catch (error) {
@@ -129,6 +131,8 @@ module.exports = {
       sale_price,
       product_category,
       product_quantity,
+      start_new, 
+      end_new
     },
     productId
   ) => {
@@ -139,7 +143,7 @@ module.exports = {
           sale_price
         )}, product_category=${Number(
           product_category
-        )}, init_quantity=${Number(product_quantity)} WHERE _id=${Number(
+        )}, init_quantity=${Number(product_quantity)}, start_new='${start_new}', end_new = '${end_new}' WHERE _id=${Number(
           productId
         )}`);
       return res ? true : false;

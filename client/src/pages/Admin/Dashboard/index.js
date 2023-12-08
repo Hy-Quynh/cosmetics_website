@@ -11,7 +11,7 @@ import { Stack, TextField, Typography } from "@mui/material";
 import { productAPI } from "../../../services/productAPI";
 const mdTheme = createTheme();
 
-function formatDate(date) {
+export function formatDate(date) {
   let d = new Date(date),
     month = "" + (d.getMonth() + 1),
     day = "" + d.getDate(),
@@ -25,8 +25,8 @@ function formatDate(date) {
 
 function DashboardContent() {
   const [filterOrder, setFilterOrder] = useState([]);
-  const [filterFromDate, setFilterFromDate] = useState("");
-  const [filterToDate, setFilterToDate] = useState("");
+  const [filterFromDate, setFilterFromDate] = useState(formatDate(new Date()));
+  const [filterToDate, setFilterToDate] = useState(formatDate(new Date()));
 
   const getOrderDataByDate = async (fromDate, toDate) => {
     try {
@@ -39,11 +39,6 @@ function DashboardContent() {
       setFilterOrder([]);
     }
   };
-
-  useEffect(() => {
-    setFilterFromDate(formatDate(new Date()));
-    setFilterToDate(formatDate(new Date()));
-  }, []);
 
   useEffect(() => {
     getOrderDataByDate(filterFromDate, filterToDate);
